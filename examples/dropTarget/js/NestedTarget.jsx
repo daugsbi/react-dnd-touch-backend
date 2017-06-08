@@ -49,10 +49,12 @@ class NestedTarget extends Component {
         } = this.props;
 
         return connectDropTarget(
-            <div className={`target nested`}>
-                {this.props.message}
-                {this.state.hasBeenHovered ? this.props.children : null}
-            </div>
+            <g width="50"  className={`target nested`}>
+              <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill="red" />
+              <text x="0" y="50" fill="black">{this.props.message}</text>
+
+              {this.state.hasBeenHovered ? this.props.children : null}
+            </g>
         );
     }
 }

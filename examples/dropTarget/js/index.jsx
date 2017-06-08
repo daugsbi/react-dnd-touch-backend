@@ -13,14 +13,15 @@ function App () {
         <div>
             <Source value={2}/>
             <Source value={15}/>
-            <Target />
 
-            <NestedTarget name="nt01" message="I will add 1" changeFunction={(value) => value + 1}>
-              <NestedTarget name="nt02" message="I will multiply by 2" changeFunction={(value) => value * 2} />
-              <NestedTarget name="nt03" message="I will multiply by 10" changeFunction={(value) => value * 10}>
-                <NestedTarget name="nt04" message="I will add 3" changeFunction={(value) => value + 3} />
+            <svg width="500" height="500">
+              <NestedTarget name="nt01" message="I will add 1" changeFunction={(value) => value + 1}>
+                <NestedTarget name="nt02" message="I will multiply by 2" changeFunction={(value) => value * 2} />
+                <NestedTarget name="nt03" message="I will multiply by 10" changeFunction={(value) => value * 10}>
+                  <NestedTarget name="nt04" message="I will add 3" changeFunction={(value) => value + 3} />
+                </NestedTarget>
               </NestedTarget>
-            </NestedTarget>
+            </svg>
         </div>
     );
 }

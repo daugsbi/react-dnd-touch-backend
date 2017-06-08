@@ -51,7 +51,7 @@ gulp.task('connect', () => {
     connect.server({
         name: 'Example App',
         port: 7789,
-        root: ['examples']
+        root: ['examples/dropTarget']
     });
 });
 
