@@ -361,7 +361,18 @@ export class TouchBackend {
         const dragOverTargetNodes = dragOverTargetIds.map(key => this.targetNodes[key]);
         // Get the a ordered list of nodes that are touched by
         let elementsAtPoint = elementsFromPoint(clientOffset.x, clientOffset.y);
-        let orderedDragOverTargetIds = elementsAtPoint
+        // Extend list with SVG parents that are not receiving elementsFromPoint events (svg groups)
+        let elementsAtPointExtended = [];
+        for (let nodeId in elementsAtPoint){
+            let currentNode = elementsAtPoint[nodeId];
+            elementsAtPointExtended.push(currentNode);
+            // Is currentNode an SVG element
+            while(currentNode.ownerSVGElement){
+                currentNode = currentNode.parentElement;
+                if( !elementsAtPointExtended.includes(currentNode) ) elementsAtPointExtended.push(currentNode)
+            }
+        }
+        let orderedDragOverTargetIds = elementsAtPointExtended
           // Filter off nodes that arent a hovered DropTargets nodes
           .filter(node => dragOverTargetNodes.indexOf(node) > -1)
           // Map back the nodes elements to targetIds
